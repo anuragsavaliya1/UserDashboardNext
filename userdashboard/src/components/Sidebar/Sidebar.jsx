@@ -1,13 +1,23 @@
 // components/Sidebar/Sidebar.jsx
 "use client";
 
-import { FaTachometerAlt, FaBoxOpen, FaHeart, FaInbox, FaList, FaCubes, FaCog, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaTachometerAlt,
+  FaBoxOpen,
+  FaHeart,
+  FaInbox,
+  FaList,
+  FaCubes,
+  FaCog,
+  FaSignOutAlt,
+  FaUsers,
+} from "react-icons/fa";
 import SidebarSection from "./SidebarSection";
 import SidebarItem from "./SidebarItem";
 import Sizes from "@/utils/Sizes";
 const menuItems = [
   { icon: <FaTachometerAlt size={Sizes.NavIconSize} />, label: "Dashboard", path: "/main/dashboard" },
-  { icon: <FaBoxOpen size={Sizes.NavIconSize} />, label: "Products", path: "/main/products" },
+  { icon: <FaUsers size={Sizes.NavIconSize} />, label: "Users", path: "/main/users" },
   { icon: <FaHeart size={Sizes.NavIconSize} />, label: "Favorites", path: "/main/favorites" },
   { icon: <FaInbox size={Sizes.NavIconSize} />, label: "Inbox", path: "/main/inbox" },
   { icon: <FaList size={Sizes.NavIconSize} />, label: "Order Lists", path: "/main/orders" },
