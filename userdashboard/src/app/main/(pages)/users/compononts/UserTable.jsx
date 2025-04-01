@@ -2,24 +2,26 @@
 
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useEffect, useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { setUsers } from "@/store/slices/userSlice"; // ✅ IMPORT HERE
 export default function ProductTable() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const users = useSelector((state) => state.users.allUsers);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch("/api/users");
-        const data = await res.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error loading products:", error);
-      }
-    }
+    async function fetchUsers() {
+      console.log("Fetching users...");
 
-    fetchData();
+      const res = await fetch("/api/users");
+      const data = await res.json();
+      dispatch(setUsers(data));
+    }
+    fetchUsers();
   }, []);
 
+  if (!users) return <div>Loading...</div>;
   return (
     <div className="flex flex-col h-full">
       <div className="overflow-auto flex-grow">
@@ -39,7 +41,7 @@ export default function ProductTable() {
 
           {/* Scrollable Table Body */}
           <tbody className="divide-y divide-gray-200">
-            {products.map((item, idx) => (
+            {users.map((item, idx) => (
               <tr key={idx} className="border-t hover:bg-gray-50">
                 <td className="py-2 px-3 font-medium">{item.id}</td>
                 <td className="py-2 px-3">
@@ -50,7 +52,7 @@ export default function ProductTable() {
                 <td className="py-2 px-3">{item.gender}</td>
                 <td className="py-2 px-3">{item.age}</td>
                 <td className="py-2 px-3 flex gap-3 text-gray-600">
-                  <button className="hover:text-blue-600">
+                  <button className="hover:text-blue-600" onClick={() => router.push(`/main/users/${item.id}`)}>
                     <FaEdit />
                   </button>
                   <button className="hover:text-red-600">

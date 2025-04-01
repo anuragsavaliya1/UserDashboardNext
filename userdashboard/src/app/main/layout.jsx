@@ -21,9 +21,9 @@ const Layout = ({ children }) => {
         </div>
 
         {/* Children Wrapper - Takes full height but prevents overflow */}
-        <div className="py-5 px-5 bg-gray-50 flex-1 overflow-hidden">
+        <div className=" bg-gray-50 flex-1 overflow-hidden">
           {/* Children - Only this will scroll */}
-          <main className="h-full w-full bg-white overflow-auto no-scrollbar p-5">{children}</main>
+          <main className="h-full w-full  overflow-auto no-scrollbar ">{children}</main>
         </div>
       </div>
     </div>
